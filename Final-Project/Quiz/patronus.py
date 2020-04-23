@@ -12,7 +12,7 @@ import time
 
 global state
 state = {'spoints': 0,
-		'0points': 0,
+		'opoints': 0,
 		'jrpoints': 0,
 		'hpoints':0}
 
@@ -25,7 +25,10 @@ def team_bios():
 	return render_template('bios.HTML')
 @app.route('/quiz')
 def quiz():
-	return render_template('quiz.html')
+	return render_template('patquiz.html')
+@app.route('/game')
+def game():
+	return render_template('blgame.html')
 @app.route('/start')
 def start():
 	global state
@@ -33,7 +36,7 @@ def start():
 	state['opoints'] == 0
 	state['jrpoints'] == 0
 	state['hpoints'] == 0
-	return render_template("quiz.html",state=state)
+	return render_template("patquiz.html",state=state)
 
 @app.route('/play',methods=['GET','POST'])
 def play_hangman():
@@ -100,39 +103,24 @@ def play_hangman():
 	if six == "achi":
 		state['jrpoints'] += 1
 	print(state)
-	if spoints>opoints and spoints>jrpoints and spoints>hpoints:
+	if state['spoints']>state['opoints'] and state['spoints']>state['jrpoints'] and state['spoints']>state['hpoints']:
 		print("Your patronus is a Stag")
 		print("Traditionally seen as ‘King of the Forest’, the stag is the protector of the other animals.")
-	elif opoints>spoints and opoints>jrpoints and opoints>hpoints:
+	elif state['opoints']>state['spoints'] and state['opoints']>state['jrpoints'] and state['opoints']>state['hpoints']:
 		print("Your patronus is an Otter")
 		print("An otter represents 'that which is hidden, unknown but necessary within the personality.'")
-	elif jrpoints>spoints and jrpoints>opoints and jrpoints>hpoints:
+	elif state['jrpoints']>state['spoints'] and state['jrpoints']>state['spoints'] and state['jrpoints']>state['hpoints']:
 		print("Your patronus is a Jack Russel Terrier")
 		print("Jack Russels represent loyalty and blind fearlessness.")
-	elif hpoints>spoints and hpoints>jrpoints and hpoints>opoints:
+	elif state['hpoints']>state['spoints'] and state['hpoints']>state['jrpoints'] and state['hpoints']>state['spoints']:
 		print("Your patronus is a Hare")
 		print("Hares represent being carefree and thoughts beyond imagination.")
 	else:
 		print("You are not ready to have a Patronus now. Thank you for taking the time to go on this journey.")
 
-		# check if letter has already been guessed
-		# and generate a response to guess again
-		# else check if letter is in word
-		# then see if the word is complete
-		# if letter not in word, then tell them
-		#print(state)
-		#for state['guesses'] in state['word']:
-			#if len(state['guesses']) >= len(state['word']):
 
-			#if [letter] in state['word']:
-				#print("this letter is in the word")
-				#elif state['guesses'] == state['word']:
-				#print("you got it right!")
-		#if state['guesses'] == state['word']:
-			#state['done'] = True
-			#return render_template("end.html",state=state)
 
-	return render_template('quiz.html',state=state)
+	return render_template('patresults.html',state=state)
 
 
 

@@ -22,18 +22,55 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
-  .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+  .thething {
+  position: relative;
+  width: 50%;
+}
+
+/* Make the image responsive */
+  .thething img {
+  width: 50%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+  .thething .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0px;
+}
+.tething {
+position: relative;
+width: 50%;
+}
+
+/* Make the image responsive */
+.tething img {
+width: 50%;
+height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.tething .btn {
+position: absolute;
+top: 70%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+color: white;
+font-size: 16px;
+border: none;
+cursor: pointer;
+border-radius: 0px;
+}
+
   </style>
 </head>
 <body>
@@ -44,12 +81,25 @@
         <a class="btn btn-info" href="/bios">Bios of Hydration Nation</a>
 				  </div>
       <br>
-      <div class = "text center">
-        <a class="button" href ="/quiz">Patronus Quiz</a>
-      </div>
     <div class="container" id="content">
 		{% block content %}{% endblock %}
 	</div>
+  <br>
+  <div class = "thething">
+    <a class="btn" href ="/quiz"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587613141_267822243.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <br>
+  <br>
+  <div class="tething">
+    <a class="btn" href="/game"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587616681_267822248.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+  </div>
+  <br>
+  <br>
+  <br>
+  <hr>
     <div id="footer">
         {% block footer %}
         &copy; Copyright 2020 by <a href="http://domain.invalid/">you</a>.
