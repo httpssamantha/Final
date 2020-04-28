@@ -59,6 +59,8 @@ height: auto;
 
 /* Style the button and place it in the middle of the container/image */
 .tething .btn {
+  width: 50%;
+  float: left;
 position: absolute;
 top: 70%;
 left: 50%;
@@ -69,6 +71,11 @@ font-size: 16px;
 border: none;
 cursor: pointer;
 border-radius: 0px;
+margin: auto;
+}
+#firstone {
+  width: 50%;
+  margin: auto;
 }
 
   </style>
@@ -78,6 +85,7 @@ border-radius: 0px;
         <a class="btn btn-info" href="/main">Home</a>
         <a class="btn btn-info" href="/about">About</a>
 				<a class="btn btn-info" href="/quiz">Quiz</a>
+        <a class="btn btn-info" href="/game">Blackjack</a>
         <a class="btn btn-info" href="/bios">Bios of Hydration Nation</a>
 				  </div>
       <br>
@@ -85,14 +93,9 @@ border-radius: 0px;
 		{% block content %}{% endblock %}
 	</div>
   <br>
-  <div class = "thething">
+  <div class ="tething" id="firstone">
     <a class="btn" href ="/quiz"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587613141_267822243.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
   </div>
-  <br>
-  <hr>
-  <br>
-  <br>
-  <br>
   <div class="tething">
     <a class="btn" href="/game"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587616681_267822248.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
   </div>

@@ -8,18 +8,31 @@ import thequiz
 app = Flask(__name__)
 import copy
 import time
+import random
 
 
 global state
 state = {'spoints': 0,
 		'opoints': 0,
 		'jrpoints': 0,
-		'hpoints':0}
+		'hpoints':0,
+		'first_card':0,
+		'second_card':0,
+		'total':0,
+		'blackjack': False,
+		'player_wins': False,
+		'dealer_wins': False,
+		'player_total': 0,
+		'dealer_total': 0,
+		'push': False}
 
 @app.route('/')
 @app.route('/main')
 def main():
 	return render_template("main.html")
+@app.route('/about')
+def about():
+	return render_template("about.html")
 @app.route('/bios')
 def team_bios():
 	return render_template('bios.HTML')
@@ -28,7 +41,42 @@ def quiz():
 	return render_template('patquiz.html')
 @app.route('/game')
 def game():
-	return render_template('blgame.html')
+	global state
+	state['first_card'] ==  0
+	state['second_card'] == 0
+	state['total'] == 0
+	state['blackjack'] == False
+	state['player_wins'] == False
+	state['dealer_wins'] == False
+	state['player_total'] == 0
+	state['dealer_total'] == 0
+	state['push'] == False
+	state['first_card'] = random.randint(1,11)
+	state['second_card'] = random.randint(1,11)
+	print(state)
+	state['total'] = state['first_card']+state['second_card']
+	return render_template("blgame.html", state=state)
+
+@app.route('/wager', methods=['GET','POST'])
+def wager():
+	global state
+	if request.method == 'GET':
+		return begin()
+	elif request.method == 'POST':
+		verdict = request.form['stayorhit']
+		if verdict == "stay" or verdict == "Stay":
+			print("stay")
+		if verdict == "hit" or verdict == "Hit":
+			print("hit")
+		print("hello")
+		while state['total'] < 21:
+			return render_template("blgame.html", state=state)
+		if state['total'] == 21:
+			print("congrats")
+			print(state)
+		return render_template("patquiz.html", state=state)
+
+
 @app.route('/start')
 def start():
 	global state
