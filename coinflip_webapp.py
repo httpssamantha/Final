@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
-print("name =", __name__ )
-
-@app.route("/coinflip")
-
-
 import random
+
+global state
+state = {'player_cash':50,
+        'CPU_cash':50,
+        'total_bet':0,
+        'player_wins': False,
+        'CPU_wins': False,
+        'flip': False}
+
+
+
 
 def coin_flip():
     coin = ['heads', 'tails']
@@ -45,3 +50,5 @@ def game():
                     print('You lose. You have no money.')
                     break
             print('--------------')
+if __name__ == '__main__':
+	app.run('127.0.0.1',port=3000)
