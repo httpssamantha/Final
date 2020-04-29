@@ -10,10 +10,7 @@ state = {'player_cash':50,
         'CPU_wins': False,
         'flip': False}
 
-
-
-
-def coin_flip():
+def toss():
     coin = ['heads', 'tails']
     result = str(random.choice(coin))
     return result
