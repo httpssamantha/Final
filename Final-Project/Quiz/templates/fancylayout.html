@@ -21,7 +21,16 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style>
+</head>
+<style>
+.copy {
+  color: white;
+  font-family: arial;
+  font-size: 10px;
+}
+body {
+    background-image: url("https://us.123rf.com/450wm/oasis15/oasis151507/oasis15150700099/42860026-casino-and-poker-background-with-dark-red-colors-seamless-vector.jpg?ver=6");
+  }
   .thething {
   position: relative;
   width: 50%;
@@ -53,13 +62,13 @@ width: 50%;
 
 /* Make the image responsive */
 .tething img {
-width: 50%;
+width: 60%;
 height: auto;
 }
 
 /* Style the button and place it in the middle of the container/image */
 .tething .btn {
-  width: 50%;
+  width: 60%;
   float: left;
 position: absolute;
 top: 70%;
@@ -79,7 +88,6 @@ margin: auto;
 }
 
   </style>
-</head>
 <body>
 	<div class="text-center">
         <a class="btn btn-info" href="/main">Home</a>
@@ -88,23 +96,29 @@ margin: auto;
         <a class="btn btn-info" href="/game">Blackjack</a>
         <a class="btn btn-info" href="/bios">Bios of Hydration Nation</a>
 				  </div>
+      <hr>
       <br>
+      <br>
+      <br>
+      <div class ="tething" id="firstone">
+        <a class="btn" href ="/quiz"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587613141_267822243.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+      </div>
+      <div class="tething">
+        <a class="btn" href="/game"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587616681_267822248.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+      </div>
+    <br>
+    <br>
+    <hr>
     <div class="container" id="content">
 		{% block content %}{% endblock %}
 	</div>
   <br>
-  <div class ="tething" id="firstone">
-    <a class="btn" href ="/quiz"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587613141_267822243.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
-  </div>
-  <div class="tething">
-    <a class="btn" href="/game"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587616681_267822248.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
-  </div>
   <br>
   <br>
   <br>
   <hr>
     <div id="footer">
-        {% block footer %}
+      {% block footer %}
         &copy; Copyright 2020 by <a href="http://domain.invalid/">you</a>.
         {% endblock %}
     </div>

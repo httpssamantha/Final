@@ -16,8 +16,10 @@ state = {'spoints': 0,
 		'opoints': 0,
 		'jrpoints': 0,
 		'hpoints':0,
-		'first_card':0,
-		'second_card':0,
+		'pfirst_card':0,
+		'psecond_card':0,
+		'dfirst_card':0,
+		'dsecond_card':0,
 		'total':0,
 		'blackjack': False,
 		'player_wins': False,
@@ -42,8 +44,8 @@ def quiz():
 @app.route('/game')
 def game():
 	global state
-	state['first_card'] ==  0
-	state['second_card'] == 0
+	state['pfirst_card'] ==  0
+	state['psecond_card'] == 0
 	state['total'] == 0
 	state['blackjack'] == False
 	state['player_wins'] == False
@@ -51,10 +53,12 @@ def game():
 	state['player_total'] == 0
 	state['dealer_total'] == 0
 	state['push'] == False
-	state['first_card'] = random.randint(1,11)
-	state['second_card'] = random.randint(1,11)
+	state['pfirst_card'] = random.randint(1,11)
+	state['psecond_card'] = random.randint(1,11)
+	state['dfirst_card'] = random.randint(1,11)
+	state['dsecond_card'] = random.randint(1,11)
 	print(state)
-	state['total'] = state['first_card']+state['second_card']
+	state['total'] = state['pfirst_card']+state['psecond_card']
 	return render_template("blgame.html", state=state)
 
 @app.route('/wager', methods=['GET','POST'])
@@ -64,13 +68,16 @@ def wager():
 		return begin()
 	elif request.method == 'POST':
 		verdict = request.form['stayorhit']
+		again = request.form['herewegoagain']
 		if verdict == "stay" or verdict == "Stay":
-			print("stay")
+			return render_template("blgame2.html", state=state)
 		if verdict == "hit" or verdict == "Hit":
-			print("hit")
+			return render_template("blgame2.html", state=state)
 		print("hello")
-		while state['total'] < 21:
-			return render_template("blgame.html", state=state)
+		if again == "stay" or again == "Stay":
+			return render_template('blgame2.html', state=state)
+		if again == "hit" or again == "Hit":
+			return render_template("blgame2.html", state=state)
 		if state['total'] == 21:
 			print("congrats")
 			print(state)
@@ -152,17 +159,13 @@ def play_hangman():
 		state['jrpoints'] += 1
 	print(state)
 	if state['spoints']>state['opoints'] and state['spoints']>state['jrpoints'] and state['spoints']>state['hpoints']:
-		print("Your patronus is a Stag")
-		print("Traditionally seen as ‘King of the Forest’, the stag is the protector of the other animals.")
+		return render_template('patsstag.html',state=state)
 	elif state['opoints']>state['spoints'] and state['opoints']>state['jrpoints'] and state['opoints']>state['hpoints']:
-		print("Your patronus is an Otter")
-		print("An otter represents 'that which is hidden, unknown but necessary within the personality.'")
+		return render_template('patotter.html', state=state)
 	elif state['jrpoints']>state['spoints'] and state['jrpoints']>state['spoints'] and state['jrpoints']>state['hpoints']:
-		print("Your patronus is a Jack Russel Terrier")
-		print("Jack Russels represent loyalty and blind fearlessness.")
+		return render_template('patjack.html', state=state)
 	elif state['hpoints']>state['spoints'] and state['hpoints']>state['jrpoints'] and state['hpoints']>state['spoints']:
-		print("Your patronus is a Hare")
-		print("Hares represent being carefree and thoughts beyond imagination.")
+		return render_template('pathare.html', state=state)
 	else:
 		print("You are not ready to have a Patronus now. Thank you for taking the time to go on this journey.")
 
