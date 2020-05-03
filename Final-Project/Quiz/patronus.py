@@ -18,8 +18,14 @@ state = {'spoints': 0,
 		'hpoints':0,
 		'pfirst_card':0,
 		'psecond_card':0,
+		'pthird_card':0,
+		'pfourth_card':0,
+		'pfifth_card':0,
 		'dfirst_card':0,
 		'dsecond_card':0,
+		'dthird_card':0,
+		'dfourth_card':0,
+		'dfifth_card':0,
 		'total':0,
 		'blackjack': False,
 		'player_wins': False,
@@ -55,8 +61,15 @@ def game():
 	state['push'] == False
 	state['pfirst_card'] = random.randint(1,11)
 	state['psecond_card'] = random.randint(1,11)
+	state['pthird_card'] = random.randint(1,11)
+	state['pfourth_card'] = random.randint(1,11)
+	state['pfifth_card'] = random.randint(1,11)
 	state['dfirst_card'] = random.randint(1,11)
 	state['dsecond_card'] = random.randint(1,11)
+	state['dthird_card'] = random.randint(1,11)
+	state['dfourth_card'] = random.randint(1,11)
+	state['dfifth_card'] = random.randint(1,11)
+
 	print(state)
 	state['total'] = state['pfirst_card']+state['psecond_card']
 	return render_template("blgame.html", state=state)
@@ -69,15 +82,25 @@ def wager():
 	elif request.method == 'POST':
 		verdict = request.form['stayorhit']
 		again = request.form['herewegoagain']
+		again2 = request.form['fourthtimesthecharm']
+		again3 = request.form['final']
 		if verdict == "stay" or verdict == "Stay":
 			return render_template("blgame2.html", state=state)
 		if verdict == "hit" or verdict == "Hit":
+			state['total']+=state['pthird_card']
 			return render_template("blgame2.html", state=state)
-		print("hello")
 		if again == "stay" or again == "Stay":
 			return render_template('blgame2.html', state=state)
 		if again == "hit" or again == "Hit":
-			return render_template("blgame2.html", state=state)
+			state['total']+=state['pfourth_card']
+			return render_template("blgame3.html", state=state)
+		if again2 == "stay" or again2 == "Stay":
+			return render_template('blgame2.html', state=state)
+		if again2 == "hit" or again2 == "Hit":
+			state['total']+=state['pfifth_card']
+			return render_template("blgame4.html", state=state)
+		if again3 == "stay" or again3 == "Stay":
+			return render_template('dealerh.html', state=state)
 		if state['total'] == 21:
 			print("congrats")
 			print(state)
