@@ -1,0 +1,139 @@
+
+  {% extends 'fancylayout.html' %}
+  {% block content %}
+  <style>
+  body {
+    background-image: url('https://i.gifer.com/Z4WK.gif');
+  }
+  p {
+    color: white;
+    font-size: 12px;
+  }
+  form {
+    color: white;
+    font-size: 12px;
+  }
+  h1 {
+    color: white;
+  }
+
+  </style>
+      <div class="title"><a target="_top" href="https://flamingtext.com/" ><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587612905_267822242.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a></div>
+    <h1>Determining your Patronus....</h1>
+
+    <p>When chosing your answer, please put the letter that is in brackets.</p>
+
+    <p>You enter the woods, and see a small, shapeless light hovering before you <br>
+      As you try to get closer to it, the shapeless light seems to move away from you.<br>
+      Curious, you follow the light to see where it goes</p>
+
+    <p>A few feet into the woods, the light seems to stop.<br>
+      *...*  Suddenly, you hear a quiet voice say:<br>
+      You are ready to begin your journey....</p>
+
+    <form method="post" action="/play">
+      You can only chose one, Black or White? <br>
+      <input type="checkbox" name="answer1" value="black">
+      <label for="black">Black</label><br>
+      <input type="checkbox" name="answer1" value="white">
+      <label for="white">White</label>
+      <br>
+      Once answering the question, the light grows and becomes little brighter.<br>
+      *~,.,~* The light then seems to continue into the forest<br>
+
+      A few feet more, into the woods, the light stops again.<br>
+      *...*  The quiet voice comes back and says:
+      If you could be known for one thing what would you chose? <br>
+      <input type="checkbox" name="answer2" value="leader">
+      <label for="leader">Leader</label><br>
+      <input type="checkbox" name="answer2" value="hardworker">
+      <label for="hardworker">Hardworker</label><br>
+      <input type="checkbox" name="answer2" value="fearless">
+      <label for="fearless">Fearless</label><br>
+      <input type="checkbox" name="answer2" value="unique">
+      <label for="unique">Unique</label><br>
+      <hr>
+      <br>
+      Once answering the question, the light grows and becomes little brighter.<br>
+      *~,.,~* The light then seems to continue into the forest<br>
+      "A few feet more, into the woods, the light stops again<br>
+      *...*  The quiet voice comes back and says:<br>
+      Now you must face a monster who threatens the lives of you, your loved ones, and the world.<br>
+      Pick the best way to defeat the monster to save everyone:<br>
+      <input type="checkbox" name="answer3" value="aaa">
+      <label for="aaa">(A): The monster is only here for one person. I will get everyone to saftey before fighting the monster myself.</label><br>
+      <input type="checkbox" name="answer3" value="bbb">
+      <label for="bbb">(B): The monster is not a monster. In fact, I've read all about it and some chamomile tea will calm it down.</label><br>
+      <input type="checkbox" name="answer3" value="ccc">
+      <label for="ccc">(C): I will fight side by side with my friends to defeat the monster and save the world!</label><br>
+      <input type="checkbox" name="answer3" value="ddd">
+      <label for="ddd">(D): There is a potion that can temporarily paralyze the monster. I've already made it.</label><br>
+      <hr>
+      <br>
+      Once answering the question, the light grows and becomes little brighter.<br>
+      *~,.,~* The light then seems to continue into the forest<br>
+      <br>
+      A few feet more, into the woods, the light stops again.<br>
+      *...*  The quiet voice comes back and says:<br>
+      <br>
+      Just a few more questions, you'll know soon.<br>
+      <br>
+      Suddenly, the forest seems to get brighter.<br>
+      To your left is a stream.    To your right is a small hut.<br>
+      In front of you but in the distance are mountains.<br>
+      Behind you is a path.<br>
+      *...*  The quiet voice says:<br>
+     Make your choice as to how to proceed.<br>
+     <input type="checkbox" name="answer4" value="stream">
+     <label for="stream">To the stream</label><br>
+     <input type="checkbox" name="answer4" value="hut">
+     <label for="hut">To the hut</label><br>
+     <input type="checkbox" name="answer4" value="mount">
+     <label for="mount">To the mountains</label><br>
+     <input type="checkbox" name="answer4" value="path">
+     <label for="path">Take the path</label><br>
+     <hr>
+     <br>
+     Once answering the question, the light grows and becomes little brighter.<br>
+     The stream, the hut, the mountains, and the path disappear. The forest is just a forest<br>
+     *~,.,~* The light then seems to continue into the forest<br>
+     <br>
+     A few feet more, into the woods, the light stops again.<br>
+     *...*  The quiet voice comes back and says:<br>
+     <br>
+     Just a few more questions, you'll know soon.<br>
+     <br>
+     Two more questions to go. What is your favorite class?<br>
+     <input type="checkbox" name="answer5" value="defense">
+     <label for="defense">Defense Against the Dark Arts</label><br>
+     <input type="checkbox" name="answer5" value="herb">
+     <label for="herb">Herbology</label><br>
+     <input type="checkbox" name="answer5" value=quid">
+     <label for="quid">Quidditch practice</label><br>
+     <input type="checkbox" name="answer5" value="divin">
+     <label for="divin">Divination</label><br>
+     <hr>
+     <br>
+     Once answering the question, the light grows and becomes little brighter.<br>
+     *~,.,~* The light then seems to continue into the forest<br>
+     <br>
+     A few feet more, into the woods, the light stops again.<br>
+     *...*  The quiet voice comes back and says:<br>
+     <br>
+     This is your last and final question<br>
+     What is your purpose in life?<br>
+    <input type="checkbox" name="answer6" value="disc">
+    <label for="disc">To discover</label><br>
+    <input type="checkbox" name="answer6" value="protec">
+    <label for="protec">To protect</label><br>
+    <input type="checkbox" name="answer6" value="create">
+    <label for="create">To create</label><br>
+    <input type="checkbox" name="answer6" value="achi">
+    <label for="achi">To achieve</label><br>
+    <input type="submit" class="btn btn-lg btn-danger">
+  </form>
+  <br>
+    <hr>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+
+{# dealer goes #}
+{% extends 'fancylayout.html' %}
+{% block content %}
+<style>
+  p {
+    font-family: arial;
+    font-size: 14px;
+    color: white;
+  }
+  form {
+    font-family: arial;
+    font-size: 14px;
+  }
+  .jumbotron {
+    font-family: optima;
+  }
+  p.cards {
+    color: white;
+    font-size: 14px;
+  }
+  .cards {
+    color: white;
+    font-size: 14px;
+  }
+
+</style>
+  <div class="jumbotron">
+    <h1>Welcome to BlackJack</h1>
+  </div>
+  <img src="https://www.animatedimages.org/data/media/1049/animated-casino-image-0009.gif">
+  <p>Your cards: </p>
+  <div class="cards"><p>{{state['pfirst_card']}} {{","}} {{state['psecond_card']}} {{","}} {{state['pthird_card']}} {{","}} {{state['pfourth_card']}} {{","}} {{state['pfifth_card']}}</p></div>
+  <p>Total: </p> <div class="cards"><p>{{state['total']}}</p></div>
+  <div class="cards"><form method="post" action="/wager"> Type "Stay" to stay or "Hit" to hit. ~
+    <input type="text" name ="final">
+  <input type="submit" class="btn btn-lg btn-danger">
+  </form></div>
+
+{% endblock %}

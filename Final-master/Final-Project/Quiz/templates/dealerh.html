@@ -1,0 +1,58 @@
+{% extends 'fancylayout.html' %}
+{% block content %}
+<style>
+	p {
+		font-family: arial;
+		font-size: 14px;
+		color: white;
+	}
+	form {
+		font-family: arial;
+		font-size: 14px;
+	}
+	.jumbotron {
+		font-family: optima;
+	}
+	p.cards {
+		color: white;
+		font-size: 14px;
+	}
+	.cards {
+		color: white;
+		font-size: 14px;
+}
+</style>
+	<div class="jumbotron">
+		<h1>Welcome to BlackJack</h1>
+	</div>
+	<img src="https://www.animatedimages.org/data/media/1049/animated-casino-image-0009.gif">
+	<p>The dealer's cards: </p>
+	<div class="cards"></div>
+	<p>Total: </p> <div class="cards">
+    {% if state['dealer_total']>=16 %}
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
+    <p>{{state['dealer_total']}}</p>
+    {% endif %}
+    {% if state['dealer_total']<=16 %}
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
+    <p>{{state['dealer_total']}}</p>
+    {% endif %}
+    {% if state['dealer_total2']<=16: %}
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}}</p>
+    <p>{{state['dealer_total2']}}</p>
+    {% endif %}
+    {% if state['dealer_total3']<=16: %}
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}}{{","}} {{state['dfourth_card']}}</p>
+    <p>{{state['dealer_total3']}}</p>
+    {% endif %}
+    {% if state['dealer_total']==21: %}
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
+    <p>{{state['dealer_total3']}}</p>
+    {% endif %}
+
+  </div>
+		<div class="form"><form method="POST" action='/second'>
+			Press submit to play your turn<br>
+			<input type="submit" class="btn btn-lg btn-danger">
+</form>
+	{% endblock %}

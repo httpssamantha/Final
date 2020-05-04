@@ -1,0 +1,50 @@
+
+  {% extends 'fancylayout.html' %}
+  {% block content %}
+    <div class="jumbotron">
+      <a target="_top" href="https://flamingtext.com/" ><img src="https://blog.flamingtext.com/blog/2020/05/04/flamingtext_com_1588625779_312995097.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+      <br/>Logo Design by <a href="https://flamingtext.com/" >FlamingText.com</a>
+      </div>
+    <h1>Coin Flip</h1>
+
+    <p>This is a simple coin flip simulation with gambling involved</p>
+
+    <p>You will begin with $50, and gamble the desired amount of rounds or till
+    you run out of money, or the CPU runs out of money.</p>
+
+    <form method="post" action="/play">
+      How many rounds would you like to play? <br>
+      <input type="radio" name="answer1" value="2">
+      <label for="black">2</label><br>
+      <input type="radio" name="answer1" value="4">
+      <label for="white">4</label>
+      <br>
+    </form>
+
+    <form method="post" action="/play">
+      Heads or Tails? <br>
+      <input type="radio" name="answer2" value="heads">
+      <label for="black">Heads</label><br>
+      <input type="radio" name="answer2" value="tails">
+      <label for="white">Tails</label>
+      <br>
+    </form>
+
+
+  <form method="post" action="/play">
+    How much do you want to bet?<br>
+    <input type="radio" name="answer3" value="5">
+    <label for="disc">$5</label><br>
+    <input type="radio" name="answer3" value="10">
+    <label for="protec">$10</label><br>
+    <p>------------------------------------</p>
+    <form method="post" action="/play">
+    <input type="submit" class="btn btn-lg btn-danger">
+    </form>
+    <br>
+      <hr>
+
+
+  {% endblock %}
+
+{% endblock %}

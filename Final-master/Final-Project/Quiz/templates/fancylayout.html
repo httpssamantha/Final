@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="style.css" />
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+    <link rel="stylesheet"
+	      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+				integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+				crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet"
+		  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+				integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+				crossorigin="anonymous">
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+.copy {
+  color: white;
+  font-family: arial;
+  font-size: 10px;
+}
+body {
+    background-image: url("https://us.123rf.com/450wm/oasis15/oasis151507/oasis15150700099/42860026-casino-and-poker-background-with-dark-red-colors-seamless-vector.jpg?ver=6");
+  }
+  .thething {
+  position: relative;
+  width: 50%;
+}
+
+/* Make the image responsive */
+  .thething img {
+  width: 50%;
+  height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+  .thething .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0px;
+}
+.tething {
+position: relative;
+width: 50%;
+}
+
+/* Make the image responsive */
+.tething img {
+width: 60%;
+height: auto;
+}
+
+/* Style the button and place it in the middle of the container/image */
+.tething .btn {
+  width: 60%;
+  float: left;
+position: absolute;
+top: 70%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+color: white;
+font-size: 16px;
+border: none;
+cursor: pointer;
+border-radius: 0px;
+margin: auto;
+}
+#firstone {
+  width: 50%;
+  margin: auto;
+}
+
+  </style>
+<body>
+	<div class="text-center">
+        <a class="btn btn-info" href="/main">Home</a>
+        <a class="btn btn-info" href="/about">About</a>
+				<a class="btn btn-info" href="/quiz">Quiz</a>
+        <a class="btn btn-info" href="/game">Blackjack</a>
+        <a class="btn btn-info" href="/bios">Bios of Hydration Nation</a>
+				  </div>
+      <hr>
+      <br>
+      <br>
+      <br>
+      <div class ="tething" id="firstone">
+        <a class="btn" href ="/quiz"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587613141_267822243.png" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+      </div>
+      <div class="tething">
+        <a class="btn" href="/game"><img src="https://blog.flamingtext.com/blog/2020/04/23/flamingtext_com_1587616681_267822248.gif" border="0" alt="Logo Design by FlamingText.com" title="Logo Design by FlamingText.com"></a>
+      </div>
+    <br>
+    <br>
+    <hr>
+    <div class="container" id="content">
+		{% block content %}{% endblock %}
+	</div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <hr>
+    <div id="footer">
+      {% block footer %}
+        &copy; Copyright 2020 by <a href="http://domain.invalid/">you</a>.
+        {% endblock %}
+    </div>
+
+  </body>
+</body>
+</html>
