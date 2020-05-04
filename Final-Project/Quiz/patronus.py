@@ -27,11 +27,14 @@ state = {'spoints': 0,
 		'dfourth_card':0,
 		'dfifth_card':0,
 		'total':0,
+		'total2':0,
 		'blackjack': False,
 		'player_wins': False,
 		'dealer_wins': False,
 		'player_total': 0,
 		'dealer_total': 0,
+		'dealer_total2':0,
+		'dealer_total3':0,
 		'push': False}
 
 @app.route('/')
@@ -47,8 +50,45 @@ def team_bios():
 @app.route('/quiz')
 def quiz():
 	return render_template('patquiz.html')
+@app.route('/dealer')
+def dealer():
+	return render_template('dealerh.html')
+@app.route('/first')
+def first():
+	global state
+	state['dfirst_card'] = 0
+	state['dsecond_card'] = 0
+	state['dthird_card'] = 0
+	state['dfourth_card'] = 0
+	state['dealer_total'] = 0
+	state['dfirst_card'] = random.randint(1,11)
+	state['dsecond_card'] = random.randint(1,11)
+	state['dealer_total'] = state['dfirst_card']+state['dsecond_card']
+	state['dealer_total2']=0
+	state['dealer_total3'] = 0
+	if state['dealer_total'] <= 16:
+		state['dthird_card'] = random.randint(1,11)
+		state['dealer_total2']=state['dealer_total'] + state['dthird_card']
+	if state['dealer_total2'] <= 16:
+		state['dfourth_card'] = random.randint(1,11)
+		state['dealer_total3'] = state['dealer_total']+ state['dfourth_card']
+	if state['dealer_total2']>=16:
+		return render_template('dealerh.html', state=state)
+	if state['dealer_total3']>=16:
+		return render_template('dealerh.html', state=state)
+	if state['dealer_total']>=16:
+		return render_template('dealerh.html', state=state)
+	return render_template('dealerh.html', state=state)
+@app.route('/second',methods=['GET','POST'])
+def second():
+	global state
+	if request.method == 'GET':
+		return first()
+	if request.method == 'POST':
+		return play_blackjack()
+
 @app.route('/game')
-def game():
+def play_blackjack():
 	global state
 	state['pfirst_card'] ==  0
 	state['psecond_card'] == 0
@@ -64,47 +104,35 @@ def game():
 	state['pthird_card'] = random.randint(1,11)
 	state['pfourth_card'] = random.randint(1,11)
 	state['pfifth_card'] = random.randint(1,11)
-	state['dfirst_card'] = random.randint(1,11)
-	state['dsecond_card'] = random.randint(1,11)
-	state['dthird_card'] = random.randint(1,11)
-	state['dfourth_card'] = random.randint(1,11)
-	state['dfifth_card'] = random.randint(1,11)
-
-	print(state)
 	state['total'] = state['pfirst_card']+state['psecond_card']
-	return render_template("blgame.html", state=state)
+	state['total2'] = state['total']+state['pthird_card']
+	state['total3'] = state['total2']+state['pfourth_card']
+	return render_template('blgame.html', state=state)
 
-@app.route('/wager', methods=['GET','POST'])
+@app.route('/wager',methods=['GET','POST'])
 def wager():
 	global state
 	if request.method == 'GET':
-		return begin()
-	elif request.method == 'POST':
-		verdict = request.form['stayorhit']
-		again = request.form['herewegoagain']
-		again2 = request.form['fourthtimesthecharm']
-		again3 = request.form['final']
-		if verdict == "stay" or verdict == "Stay":
-			return render_template("blgame2.html", state=state)
-		if verdict == "hit" or verdict == "Hit":
-			state['total']+=state['pthird_card']
-			return render_template("blgame2.html", state=state)
-		if again == "stay" or again == "Stay":
-			return render_template('blgame2.html', state=state)
-		if again == "hit" or again == "Hit":
-			state['total']+=state['pfourth_card']
-			return render_template("blgame3.html", state=state)
-		if again2 == "stay" or again2 == "Stay":
-			return render_template('blgame2.html', state=state)
-		if again2 == "hit" or again2 == "Hit":
-			state['total']+=state['pfifth_card']
-			return render_template("blgame4.html", state=state)
-		if again3 == "stay" or again3 == "Stay":
-			return render_template('dealerh.html', state=state)
+		return play_blackjack()
+	if request.method == 'POST':
+		if state['total'] > 21:
+			print("congrats")
+			print(state)
+			return render_template('patsstag.html',state=state)
 		if state['total'] == 21:
 			print("congrats")
 			print(state)
-		return render_template("patquiz.html", state=state)
+			return render_template('patsstag.html',state=state)
+		if state['total2'] > 21:
+			print("congrats")
+			print("state")
+			return render_template('patsstag.html',state=state)
+		if state['total2'] == 21:
+			print("congrats")
+			print("state")
+			return render_template('patsstag.html',state=state)
+		if state['total'] < 21:
+			return render_template('patotter.html',state=state)
 
 
 @app.route('/start')
