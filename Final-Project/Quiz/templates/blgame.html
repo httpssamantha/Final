@@ -6,6 +6,10 @@
 		font-size: 14px;
 		color: white;
 	}
+	h4 {
+		font-family: arial;
+		color: white;
+	}
 	form {
 		font-family: arial;
 		font-size: 14px;
@@ -36,6 +40,12 @@
 	}
 	.conditional_form_part_activator2:checked + .trial2 {
     display: block;
+	}
+	.trial3{
+		display: none;
+	}
+	.conditional_form_part_activator3:checked + .trial3 {
+	    display: block;
   }
 	label {
 		color: white;
@@ -58,22 +68,50 @@
 		<h1>Welcome to BlackJack</h1>
 	</div>
 	<img src="https://www.animatedimages.org/data/media/1049/animated-casino-image-0009.gif">
-	<p>The dealer's cards: </p>
-	<div class="cards"><p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}} {{","}} {{state['dfourth_card']}}</p></div>
-	<p>Total: </p> <div class="cards"><p>{{state['dealer_total']}}</p></div>
 	<p>Your cards: </p>
 	<div class="cards"><p>{{state['pfirst_card']}} {{","}} {{state['psecond_card']}}</p></div>
-	<p>Total: </p> <div class="cards"><p>{{state['total']}}</p></div>
-		<div class="form"><form method="POST" action='/wager'>
-			Check "Stay" to stay or check "Hit" to hit.><br>
-			<input type="checkbox" name="stayorhit" value="zero">
-			<label for="zero"> Stay</label>
-			<input type="submit" class="btn btn-lg btn-danger">
-	</form></div>
-	<form style="color:white;" name="check"> Hit? (Do not press submit)<br>
+	<p>Total: </p> <div class="cards"><p>{{state['total']}}<br></p>
+	{% if state['total'] == 21 : %}
+		<h4><strong>You have Blackjack! You Win! <br>Please click the Blackjack icon at the top of page to play again!</strong></h4>
+		<img src="https://media.giphy.com/media/iJc5ynT1VwAUPN55e6/giphy.gif">
+
+	{% endif %}
+	</div>
+	<form style="color:white;" name="check"> <br>Hit? <br>
 		<input class="conditional_form_part_activator" type="checkbox">
 	<div class="trial">
 		<div class="cards"><p>{{state['pfirst_card']}} {{","}} {{state['psecond_card']}} {{","}} {{state['pthird_card']}}</p></div>
-	  <p>Total: </p> <div class="cards"><p>{{state['total2']}}</p></div>
-	</div>
-	{% endblock %}
+	  <p>Total: </p> <div class="cards"><p>{{state['total2']}}</p>
+			{% if state['total2'] > 21 : %}
+			<h4><strong>You Busted! You Lose! <br>Please click the Blackjack icon at the top of page to play again!</strong></h4>
+			<img src="https://media2.giphy.com/media/eJ4j2VnYOZU8qJU3Py/giphy.gif">
+
+			{% endif %}
+		</div>
+	</div><form style="color:white;" name="check"> <br>Hit again?<br>
+	<input class="conditional_form_part_activator2" type="checkbox">
+	<div class="trial2">
+		<div class="cards"><p>{{state['pfirst_card']}} {{","}} {{state['psecond_card']}} {{","}} {{state['pthird_card']}} {{","}} {{state['pfourth_card']}}</p></div>
+		<p>Total: </p> <div class="cards"><p>{{state['total3']}}</p>
+			{% if state['total3'] > 21 : %}
+			<h4><strong>You Busted! You Lose! <br>Please click the Blackjack icon at the top of page to play again!</strong></h4>
+			<img src="https://media2.giphy.com/media/eJ4j2VnYOZU8qJU3Py/giphy.gif">
+			{% endif %}
+		</div>
+	</div><form style="color:white;" name="check"> <br>Hit a third time?<br>
+	<input class="conditional_form_part_activator3" type="checkbox">
+	<div class="trial3">
+		<div class="cards"><p>{{state['pfirst_card']}} {{","}} {{state['psecond_card']}} {{","}} {{state['pthird_card']}} {{","}} {{state['pfourth_card']}}{{","}} {{state['pfifth_card']}}</p></div>
+		<p>Total: </p> <div class="cards"><p>{{state['total4']}}</p>
+			{% if state['total4'] > 21 : %}
+			<h4><strong>You Busted! You Lose! <br>Please click the Blackjack icon at the top of page to play again!</strong></h4>
+			<img src="https://media2.giphy.com/media/eJ4j2VnYOZU8qJU3Py/giphy.gif">
+			{% endif %}
+		</div>
+		</div>
+		</form>
+		<form method="POST" action='/wager'>
+			<input type="submit" class="btn btn-lg btn-danger" value="Stay">
+
+</form>
+{% endblock %}

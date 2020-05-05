@@ -21,6 +21,10 @@
 		color: white;
 		font-size: 14px;
 }
+.form{
+	color: white;
+	font-size: 14px;
+}
 </style>
 	<div class="jumbotron">
 		<h1>Welcome to BlackJack</h1>
@@ -29,30 +33,23 @@
 	<p>The dealer's cards: </p>
 	<div class="cards"></div>
 	<p>Total: </p> <div class="cards">
-    {% if state['dealer_total']>=16 %}
-    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
+    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}} {{","}} {{state['dfourth_card']}} {{","}} {{state['dfifth_card']}}</p>
     <p>{{state['dealer_total']}}</p>
-    {% endif %}
-    {% if state['dealer_total']<=16 %}
-    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
-    <p>{{state['dealer_total']}}</p>
-    {% endif %}
-    {% if state['dealer_total2']<=16: %}
-    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}}</p>
-    <p>{{state['dealer_total2']}}</p>
-    {% endif %}
-    {% if state['dealer_total3']<=16: %}
-    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}{{","}} {{state['dthird_card']}}{{","}} {{state['dfourth_card']}}</p>
-    <p>{{state['dealer_total3']}}</p>
-    {% endif %}
-    {% if state['dealer_total']==21: %}
-    <p>{{state['dfirst_card']}} {{","}} {{state['dsecond_card']}}</p>
-    <p>{{state['dealer_total3']}}</p>
-    {% endif %}
-
+{% if state['dealer_total'] >= 16 and state['dealer_total'] <= 21 : %}
+<p>The Dealer's Hand is 16 or higher, he has to stay! </p>
+{% endif %}
+{% if state['dealer_total'] > 21 : %}
+<p>The Dealer Busted! You WIN!</p>
+<img src="https://media.giphy.com/media/iJc5ynT1VwAUPN55e6/giphy.gif"><br>
+{% elif state['dealer_total'] <= 21 and state['dealer_total'] > state['player_total']: %}
+<p>The Dealer Wins! You lose!</p>
+<img src="https://media2.giphy.com/media/eJ4j2VnYOZU8qJU3Py/giphy.gif">
+{% elif state['dealer_total'] <= 21 and state['player_total'] > state['dealer_total'] : %}
+<p>You beat the Dealer! You WIN!</p>
+<img src="https://media.giphy.com/media/iJc5ynT1VwAUPN55e6/giphy.gif"><br>
+{% endif %}
   </div>
 		<div class="form"><form method="POST" action='/second'>
-			Press submit to play your turn<br>
-			<input type="submit" class="btn btn-lg btn-danger">
-</form>
+			<input type="submit" class="btn btn-lg btn-danger" value="play again?">
+</form></div>
 	{% endblock %}

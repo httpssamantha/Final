@@ -28,6 +28,8 @@ state = {'spoints': 0,
 		'dfifth_card':0,
 		'total':0,
 		'total2':0,
+		'total3':0,
+		'total4':0,
 		'blackjack': False,
 		'player_wins': False,
 		'dealer_wins': False,
@@ -53,39 +55,6 @@ def quiz():
 @app.route('/dealer')
 def dealer():
 	return render_template('dealerh.html')
-@app.route('/first')
-def first():
-	global state
-	state['dfirst_card'] = 0
-	state['dsecond_card'] = 0
-	state['dthird_card'] = 0
-	state['dfourth_card'] = 0
-	state['dealer_total'] = 0
-	state['dfirst_card'] = random.randint(1,11)
-	state['dsecond_card'] = random.randint(1,11)
-	state['dealer_total'] = state['dfirst_card']+state['dsecond_card']
-	state['dealer_total2']=0
-	state['dealer_total3'] = 0
-	if state['dealer_total'] <= 16:
-		state['dthird_card'] = random.randint(1,11)
-		state['dealer_total2']=state['dealer_total'] + state['dthird_card']
-	if state['dealer_total2'] <= 16:
-		state['dfourth_card'] = random.randint(1,11)
-		state['dealer_total3'] = state['dealer_total']+ state['dfourth_card']
-	if state['dealer_total2']>=16:
-		return render_template('dealerh.html', state=state)
-	if state['dealer_total3']>=16:
-		return render_template('dealerh.html', state=state)
-	if state['dealer_total']>=16:
-		return render_template('dealerh.html', state=state)
-	return render_template('dealerh.html', state=state)
-@app.route('/second',methods=['GET','POST'])
-def second():
-	global state
-	if request.method == 'GET':
-		return first()
-	if request.method == 'POST':
-		return play_blackjack()
 
 @app.route('/game')
 def play_blackjack():
@@ -97,43 +66,82 @@ def play_blackjack():
 	state['player_wins'] == False
 	state['dealer_wins'] == False
 	state['player_total'] == 0
-	state['dealer_total'] == 0
 	state['push'] == False
 	state['pfirst_card'] = random.randint(1,11)
-	state['psecond_card'] = random.randint(1,11)
-	state['pthird_card'] = random.randint(1,11)
-	state['pfourth_card'] = random.randint(1,11)
-	state['pfifth_card'] = random.randint(1,11)
+	state['psecond_card'] = random.randint(1,10)
 	state['total'] = state['pfirst_card']+state['psecond_card']
-	state['total2'] = state['total']+state['pthird_card']
-	state['total3'] = state['total2']+state['pfourth_card']
+	state['player_total'] = state['total']
+	if state['total'] < 21:
+		state['pthird_card'] = random.randint(1,11)
+		state['total2']=state['total'] + state['pthird_card']
+		state['player_total'] = state['total2']
+	if state['total2'] < 21:
+		state['pfourth_card'] = random.randint(1,11)
+		state['total3']=state['total2'] + state['pfourth_card']
+		state['player_total'] = state['total3']
+	if state['total2'] >21:
+		state['player_total'] = state['total']
+	if state['total3'] < 21:
+		state['pfifth_card'] = random.randint(1,11)
+		state['total4']=state['total3'] + state['pfifth_card']
+		state['player_total'] = state['total4']
+	if state['total3'] >21:
+		state['player_total'] = state['total2']
+	if state['total4'] < 21:
+		return render_template('blgame.html', state=state)
+	if state['total4'] >21:
+		state['player_total'] = state['total3']
+
 	return render_template('blgame.html', state=state)
+
 
 @app.route('/wager',methods=['GET','POST'])
 def wager():
 	global state
 	if request.method == 'GET':
 		return play_blackjack()
-	if request.method == 'POST':
-		if state['total'] > 21:
-			print("congrats")
-			print(state)
-			return render_template('patsstag.html',state=state)
-		if state['total'] == 21:
-			print("congrats")
-			print(state)
-			return render_template('patsstag.html',state=state)
-		if state['total2'] > 21:
-			print("congrats")
-			print("state")
-			return render_template('patsstag.html',state=state)
-		if state['total2'] == 21:
-			print("congrats")
-			print("state")
-			return render_template('patsstag.html',state=state)
-		if state['total'] < 21:
-			return render_template('patotter.html',state=state)
+	elif request.method == 'POST':
+		return first()
+@app.route('/first')
+def first():
+	global state
+	state['dfirst_card'] = 0
+	state['dsecond_card'] = 0
+	state['dthird_card'] = 0
+	state['dfourth_card'] = 0
+	state['dfifth_card'] = 0
+	state['dealer_total'] = 0
+	state['dfirst_card'] = random.randint(1,11)
+	state['dsecond_card'] = random.randint(1,10)
+	state['dealer_total'] = state['dfirst_card']+state['dsecond_card']
+	state['dealer_total2']=0
+	state['dealer_total3'] = 0
+	if state['dealer_total'] <= 16:
+		state['dthird_card'] = random.randint(1,11)
+		state['dealer_total']=state['dealer_total'] + state['dthird_card']
+	if state['dealer_total'] <= 16:
+		state['dfourth_card'] = random.randint(1,11)
+		state['dealer_total']=state['dealer_total'] + state['dfourth_card']
+	if state['dealer_total'] <= 16:
+		state['dfifth_card'] = random.randint(1,11)
+		state['dealer_total']=state['dealer_total'] + state['dfifth_card']
+	if state['dealer_total']>=16:
+		return render_template('dealerh.html', state=state)
+	return render_template('dealerh.html', state=state)
 
+@app.route('/second',methods=['GET','POST'])
+def second():
+	global state
+	if request.method == 'GET':
+		return first()
+	elif request.method == 'POST':
+		return play_blackjack()
+
+@app.route('/lose',methods=['GET','POST'])
+def lose():
+	global state
+	if request.method == 'POST':
+		return render_template('LosePage.html', state=state)
 
 @app.route('/start')
 def start():
@@ -149,6 +157,7 @@ def play_hangman():
 	global state
 	if request.method == 'GET':
 		return start()
+
 
 	elif request.method == 'POST':
 		one = request.form['answer1']
