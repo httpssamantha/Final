@@ -11,16 +11,17 @@ state = {'player_cash':50,
         'flip': False}
 
 def toss():
+    
     coin = ['heads', 'tails']
     result = str(random.choice(coin))
     return result
 
-
+@app.route('/coinflip')
 def game():
-    p1_money = 50
-    n = int(input('How many rounds do you want to play?'))
-    print('You have $50')
-    cpu_money = 50
+    global state
+    state['P1 Money'] = 50
+    state['CPU_money'] = 50
+    state['rounds'] == int(input('How many rounds do you want to play?'))
 
     for i in range(0, n):
         if i <= n:
