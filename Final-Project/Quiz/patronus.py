@@ -37,7 +37,13 @@ state = {'spoints': 0,
 		'dealer_total': 0,
 		'dealer_total2':0,
 		'dealer_total3':0,
-		'push': False}
+		'push': False,
+        'player_cash':50,
+        'CPU_cash':50,
+        'total_bet':0,
+        'player_wins': False,
+        'CPU_wins': False,
+        'flip': False}
 
 @app.route('/')
 @app.route('/main')
@@ -234,23 +240,13 @@ def play_hangman():
 	return render_template('patresults.html',state=state)
 
 
-import random
-
-global state
-state = {'player_cash':50,
-        'CPU_cash':50,
-        'total_bet':0,
-        'player_wins': False,
-        'CPU_wins': False,
-        'flip': False}
-
 @app.route('/coinflip')
 
 def toss():
     coin = ['heads', 'tails']
     result = str(random.choice(coin))
     return result
-   
+
 def game():
     global state
     state['P1 Money'] = 50
@@ -283,7 +279,6 @@ def game():
                     break
             print('--------------')
 
-	
+
 	if __name__ == '__main__':
 	app.run('127.0.0.1',port=3000)
-
