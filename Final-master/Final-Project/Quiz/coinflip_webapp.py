@@ -10,11 +10,11 @@ state = {'player_cash':50,
         'CPU_wins': False,
         'flip': False}
 
+@app.route('/toss')
 def toss():
-    
-    coin = ['heads', 'tails']
-    result = str(random.choice(coin))
-    return result
+    state['result'] = str(random.choice(coin))
+    state['heads', 'tails'] == state['result'] 
+    return render_template('jk.html', state=state)
 
 @app.route('/coinflip')
 def game():
@@ -25,10 +25,9 @@ def game():
 
     for i in range(0, n):
         if i <= n:
-
-            flip = coin_flip()
-            bet = int(input('Place your bet:'))
-            p1_guess = input('Heads or tails?')
+            state['flip'] = toss()
+            state['bet'] == int(input('Place your bet:'))
+            state['P1_guess'] == input('Heads or tails?')
             print('You bet $' + str(bet),'this round')
 
             if p1_guess == flip:
