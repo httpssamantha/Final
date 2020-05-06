@@ -246,6 +246,7 @@ def toss():
     coin = ['heads', 'tails']
     result = str(random.choice(coin))
     return result
+    
 
 def game():
     global state
@@ -280,5 +281,5 @@ def game():
             print('--------------')
 
 
-	if __name__ == '__main__':
+if __name__ == '__main__':
 	app.run('127.0.0.1',port=3000)
